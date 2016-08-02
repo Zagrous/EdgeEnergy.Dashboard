@@ -1,0 +1,485 @@
+﻿<Page x:Class="EdgeEnergy.CutterDashboard.Views.StocksView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+
+      xmlns:controls="clr-namespace:EdgeEnergy.CutterDashboard.Controls"
+      xmlns:ig="http://schemas.infragistics.com/xaml" xmlns:igEditors="http://infragistics.com/Editors" Width="Auto"
+      Height="Auto"
+      Loaded="WindowLoaded">
+
+    <Page.Resources>
+        <!-- DataTemplate for Stock List Box instances -->
+        <DataTemplate x:Key="StockTemplate">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0"
+                        Height="37"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Width="Auto"
+                        MinWidth="84">
+                <TextBlock Text="{Binding Symbol}"
+                           Style="{StaticResource StockTemplateText}"
+                           Foreground="{Binding Brush}"
+                           Height="37"
+                           Width="Auto"
+                           MinWidth="84" />
+            </StackPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ListBoxItemsPanelTemplateH">
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+
+        <!-- Chart type: Line Series -->
+        <controls:SeriesTemplateSelector x:Key="StockValueChartTypeTemplateSelector">
+            <controls:SeriesTemplateSelector.LineChartTemplate>
+                <DataTemplate>
+                    <ig:LineSeries ItemsSource="{Binding FilteredData, Mode=OneWay}"
+                                   ValueMemberPath="Value"
+                                   Brush="{Binding Brush}"
+                                   YAxis="{Binding ElementName=yStockValue}"
+                                   MarkerType="None"
+                                   BorderBrush="Transparent"
+                                   Width="Auto"
+                                   FontFamily="Arial"
+                                   Margin="0" />
+                </DataTemplate>
+            </controls:SeriesTemplateSelector.LineChartTemplate>
+
+
+        </controls:SeriesTemplateSelector>
+
+        <!-- Category X Axis: Single Series -->
+        <controls:AxisTemplateSelector x:Key="StockValueChartTypeXAxisTemplateSelector">
+            <controls:AxisTemplateSelector.SingleSeriesTemplate>
+                <DataTemplate>
+                    <ig:CategoryDateTimeXAxis ItemsSource="{Binding FilteredData, Mode=OneWay}"
+                                              DateTimeMemberPath="Date"
+                                              Label="{}{Date:T}"
+                                              Strip="Transparent"
+                                              MajorStroke="#FF333333"
+                                              MinorStroke="#B2333333"
+                                              Margin="0"
+                                              Width="Auto"
+                                              Height="10"
+                                              VerticalAlignment="Bottom"
+                                              MinimumValue="{Binding Parent.MinimumValue, Mode=OneWay}"
+                                              MaximumValue="{Binding Parent.MaximumValue, Mode=OneWay}">
+                        <ig:CategoryDateTimeXAxis.LabelSettings>
+                            <ig:AxisLabelSettings Visibility="Collapsed"
+                                                  Extent="36"
+                                                  Location="OutsideBottom"
+                                                  VerticalAlignment="Center"
+                                                  Foreground="#CCCCCC"
+                                                  Padding="0,0,0,13"
+                                                  FontFamily="Arial"
+                                                  FontSize="12" />
+                        </ig:CategoryDateTimeXAxis.LabelSettings>
+                    </ig:CategoryDateTimeXAxis>
+                </DataTemplate>
+            </controls:AxisTemplateSelector.SingleSeriesTemplate>
+
+            <!-- Category X Axis: Multiple Series -->
+            <controls:AxisTemplateSelector.MultipleSeriesTemplate>
+                <DataTemplate>
+                    <ig:CategoryDateTimeXAxis ItemsSource="{Binding FilteredData, Mode=OneWay}"
+                                              DateTimeMemberPath="Date"
+                                              Label="{}{Date:T}"
+                                              Strip="Transparent"
+                                              MajorStroke="#FF333333"
+                                              MinorStroke="#B2333333"
+                                              Margin="0"
+                                              Width="Auto"
+                                              Height="10"
+                                              VerticalAlignment="Bottom"
+                                              MinimumValue="{Binding Parent.MinimumValue, Mode=OneWay}"
+                                              MaximumValue="{Binding Parent.MaximumValue, Mode=OneWay}">
+                        <ig:CategoryDateTimeXAxis.LabelSettings>
+                            <ig:AxisLabelSettings Visibility="Collapsed"
+                                                  Extent="36"
+                                                  Location="OutsideBottom"
+                                                  VerticalAlignment="Center"
+                                                  Foreground="#CCCCCC"
+                                                  Padding="0,0,0,13"
+                                                  FontFamily="Arial"
+                                                  FontSize="12" />
+                        </ig:CategoryDateTimeXAxis.LabelSettings>
+                    </ig:CategoryDateTimeXAxis>
+                </DataTemplate>
+            </controls:AxisTemplateSelector.MultipleSeriesTemplate>
+        </controls:AxisTemplateSelector>
+
+        <!-- Category Y Axis: Single Series -->
+        <controls:AxisTemplateSelector x:Key="StockValueChartTypeYAxisTemplateSelector">
+            <controls:AxisTemplateSelector.SingleSeriesTemplate>
+                <DataTemplate>
+                    <ig:NumericYAxis x:Name="yStockValue"
+                                     Strip="Transparent"
+                                     MajorStroke="#FF333333"
+                                     MinorStroke="#B2333333"
+                                     Width="Auto">
+                        <ig:NumericYAxis.LabelSettings>
+                            <ig:AxisLabelSettings Foreground="#CCCCCC"
+                                                  FontFamily="Arial"
+                                                  FontSize="12"
+                                                  Location="OutsideRight"
+                                                  Padding="0,0,0,20"
+                                                  Extent="40" />
+                        </ig:NumericYAxis.LabelSettings>
+                    </ig:NumericYAxis>
+                </DataTemplate>
+            </controls:AxisTemplateSelector.SingleSeriesTemplate>
+
+            <!-- Category Y Axis: Multiple Series -->
+            <controls:AxisTemplateSelector.MultipleSeriesTemplate>
+                <DataTemplate>
+                    <ig:NumericYAxis x:Name="yStockValue"
+                                     Strip="Transparent"
+                                     MajorStroke="#FF333333"
+                                     MinorStroke="#B2333333"
+                                     Margin="0"
+                                     Width="Auto">
+                        <ig:NumericYAxis.LabelSettings>
+                            <ig:AxisLabelSettings Foreground="#CCCCCC"
+                                                  FontFamily="Arial"
+                                                  FontSize="12"
+                                                  Location="OutsideRight"
+                                                  Padding="0,0,0,20"
+                                                  Extent="40" />
+                        </ig:NumericYAxis.LabelSettings>
+                    </ig:NumericYAxis>
+                </DataTemplate>
+            </controls:AxisTemplateSelector.MultipleSeriesTemplate>
+        </controls:AxisTemplateSelector>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42" />
+            <!-- Header -->
+            <RowDefinition Height="42" />
+            <!-- Watched Stocks -->
+            <RowDefinition Height="2*" />
+            <!-- Stock Chart -->
+            <RowDefinition Height="1*" />
+            <!-- Volume -->
+            <RowDefinition Height="88" />
+            <!-- Zoombar -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+
+
+        <Grid Grid.Row="0"
+                  Width="Auto"
+                  Margin="0"             
+                  Background="Black">
+
+
+            <StackPanel Orientation="Horizontal"
+                            Margin="30,5,30,5">
+                <ComboBox x:Name="SymbolSelector" 
+                                   IsEditable="False" 
+                                   ItemsSource="{Binding StockSearchList, Mode=OneWay}"
+                                   Width="300"
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Left"
+                                    Foreground="white"
+                                    SelectionChanged="OnAddItem">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="DarkGray" />
+                        <LinearGradientBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"  StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FFCBCBCB" Offset="0.0"/>
+                            <GradientStop Color="#FF7C7C7C" Offset="0.3"/>
+                            <GradientStop Color="black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Resources>
+                    <ComboBox.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.5">
+                            <GradientStop Color="DarkGray" Offset="0"/>
+                            <GradientStop Color="black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Background>
+                </ComboBox>
+
+            </StackPanel>
+
+
+            <!-- Navigation Links -->
+            <Border x:Name="LinksBorder" HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,20,20,0">
+
+                <StackPanel x:Name="LinksStackPanel"
+                		Orientation="Horizontal" VerticalAlignment="Top">
+
+                    <Button x:Name="ZoomOut"
+                			FontFamily="Verdana"
+                            HorizontalAlignment="Right"
+                            Content="Zoom Out" 
+                            Style="{DynamicResource AboutButton}" />
+
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+
+        <!-- Watched Stocks -->
+        <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        Height="41"
+                        Margin="0,1,0,0"
+                        VerticalAlignment="Top"
+                        Background="#FF333333">
+            <ListBox x:Name="StockListBox"
+                         ItemsPanel="{StaticResource ListBoxItemsPanelTemplateH}"
+                         ItemTemplate="{StaticResource StockTemplate}"
+                         ItemsSource="{Binding Tickers}"
+                         SelectedItem="{Binding SelectedStock, Mode=TwoWay}"
+                         Margin="0"
+                         Style="{StaticResource ListBoxStyle1}"
+                         Height="41"
+                         Width="Auto"
+                         BorderThickness="0"
+                         ItemContainerStyle="{StaticResource StocksListBoxItemStyle1}"
+                        
+                         >
+                <ListBox.Background>
+                    <ImageBrush Stretch="Fill" />
+                </ListBox.Background>
+            </ListBox>
+        </StackPanel>
+
+
+        <!-- Stock Chart -->
+        <controls:DataChartEx Grid.Row="2"  x:Name="mainChart"
+                                  CircleMarkerTemplate="{StaticResource CircleMarkerTemplate}" 
+                                  SeriesSource="{Binding Tickers1}"
+                                  SeriesTemplateSelector="{StaticResource StockValueChartTypeTemplateSelector}"
+                                  AxisCategoryXTemplateSelector="{StaticResource StockValueChartTypeXAxisTemplateSelector}"
+                                  AxisCategoryYTemplateSelector="{StaticResource StockValueChartTypeYAxisTemplateSelector}"
+                                  HorizontalZoomable="True"
+                                  SelectedChartType="{Binding SelectedChartType}"
+                                  DataContext="{Binding}"
+                                  HorizontalZoombarVisibility="Collapsed"
+                                  VerticalZoombarVisibility="Visible"
+                                 VerticalZoomable="True"
+                                  Margin="30,5,30,5"
+                                  PlotAreaBorderThickness="0"
+                                  PlotAreaMinHeight="0"
+                                  PlotAreaMinWidth="0"
+                                  Width="Auto"
+                                  Height="Auto"
+                                  PlotAreaBackground="Transparent"
+                                  Padding="0"
+                                  >
+            <ig:SyncManager.SyncSettings>
+                <ig:SyncSettings SyncChannel="Group1"
+                                     SynchronizeHorizontally="True"
+                                     SynchronizeVertically="False" />
+            </ig:SyncManager.SyncSettings>
+        </controls:DataChartEx>
+
+
+        <!-- Stock Chart -->
+        <!--<controls:DataChartEx Grid.Row="3"
+                                  SeriesSource="{Binding Tickers2}"
+                                  SeriesTemplateSelector="{StaticResource StockValueChartTypeTemplateSelector}"
+                                  AxisCategoryXTemplateSelector="{StaticResource StockValueChartTypeXAxisTemplateSelector}"
+                                  AxisCategoryYTemplateSelector="{StaticResource StockValueChartTypeYAxisTemplateSelector}"
+                                  HorizontalZoomable="True"
+                                  SelectedChartType="{Binding SelectedChartType}"
+                                  DataContext="{Binding}"
+                                  HorizontalZoombarVisibility="Collapsed"
+                                  VerticalZoombarVisibility="Collapsed"
+                                  Margin="30,5,30,5"
+                                  PlotAreaBorderThickness="0"
+                                  PlotAreaMinHeight="0"
+                                  PlotAreaMinWidth="0"
+                             Width="Auto"
+                             Height="Auto"
+                                  PlotAreaBackground="Transparent"
+                                  Padding="0">
+            <ig:SyncManager.SyncSettings>
+                <ig:SyncSettings SyncChannel="Group1"
+                                     SynchronizeHorizontally="True"
+                                     SynchronizeVertically="False" />
+            </ig:SyncManager.SyncSettings>
+        </controls:DataChartEx>-->
+
+
+        <!-- Chart With ToolTip -->
+        <ig:XamDataChart x:Name="stockChart"
+                             Grid.Row="3"
+                             DataContext="{Binding SelectedStock}"
+                             HorizontalZoombarVisibility="Collapsed"
+                                  VerticalZoombarVisibility="Visible"
+                                 VerticalZoomable="True"
+                      
+                             HorizontalZoomable="True"
+                             Margin="30,5,30,5"
+                             PlotAreaBorderThickness="0"
+                             PlotAreaBackground="Transparent"
+                             Height="Auto" >
+            <ig:SyncManager.SyncSettings>
+                <ig:SyncSettings SyncChannel="Group1"
+                                     SynchronizeHorizontally="True"
+                                     SynchronizeVertically="False" />
+            </ig:SyncManager.SyncSettings>
+
+            <ig:XamDataChart.Axes>
+                <ig:CategoryDateTimeXAxis x:Name="xVolume"
+                                              ItemsSource="{Binding FilteredData}"
+                                              DateTimeMemberPath="Date"
+                                              Label="{}{Date:T}"
+                                              Strip="Transparent"
+                                              MajorStroke="Transparent"
+                                              MinorStroke="Transparent"
+                                              Height="88"
+                                              Margin="0"
+                                              MinimumValue="{Binding Parent.MinimumValue, Mode=OneWay}"
+                                              MaximumValue="{Binding Parent.MaximumValue, Mode=OneWay}">
+                    <ig:CategoryDateTimeXAxis.LabelSettings>
+                        <ig:AxisLabelSettings Visibility="Collapsed" />
+                    </ig:CategoryDateTimeXAxis.LabelSettings>
+                </ig:CategoryDateTimeXAxis>
+
+                <ig:NumericYAxis x:Name="yVolume"
+                                     Strip="Transparent"
+                                     MajorStroke="#FF333333"
+                                     MinorStroke="#B2333333"
+                                     Width="Auto">
+                    <ig:NumericYAxis.LabelSettings>
+                        <ig:AxisLabelSettings Foreground="#CCCCCC"
+                                                  FontFamily="Arial"
+                                                  FontSize="12"
+                                                  Location="OutsideRight"
+                                                  Padding="0,0,0,20"
+                                                  Extent="40" />
+                    </ig:NumericYAxis.LabelSettings>
+
+                </ig:NumericYAxis>
+
+                <!--<ig:NumericYAxis x:Name="yVolume"
+                                     Strip="Transparent"
+                                     MajorStroke="Transparent"
+                                     MinorStroke="Transparent"
+                                     IsLogarithmic="True"
+                                     Height="88"
+                                     Margin="0">
+                        <ig:NumericYAxis.LabelSettings>
+                            <ig:AxisLabelSettings Visibility="Collapsed" />
+                        </ig:NumericYAxis.LabelSettings>
+                    </ig:NumericYAxis>-->
+
+            </ig:XamDataChart.Axes>
+
+            <ig:XamDataChart.Series>
+                <ig:LineSeries ItemsSource="{Binding FilteredData}"
+                                     ValueMemberPath="Value"
+                                     MarkerType="Circle" 
+                                     XAxis="{Binding ElementName=xVolume}"
+                                     YAxis="{Binding ElementName=yVolume}"
+                                     Height="Auto"
+                                     Margin="05"
+                                     Brush="{Binding Brush}">
+
+
+                    <ig:LineSeries.ToolTip>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Item.DateString}"
+                                           FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Item.ValueString}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ig:LineSeries.ToolTip>
+
+
+                </ig:LineSeries>
+
+            </ig:XamDataChart.Series>
+        </ig:XamDataChart>
+
+
+        <!-- Zoombar   Style="{StaticResource XamZoombarStyle1}" -->
+        <controls:ZoombarEx Grid.Row="4" x:Name="zoomBar"
+                                d:LayoutOverrides="Height"
+                                Target="{Binding ElementName=stockChart, Path=HorizontalZoombar}"
+                            Margin="30,5,30,5"
+                            Background="Black"
+                            BorderBrush="Black"
+                            Foreground="Red" 
+                           
+                                >
+            <ig:XamZoombar.HorizontalPreviewContent>
+                <ig:XamDataChart DataContext="{Binding SelectedStock, Mode=OneWay}"
+                                     HorizontalZoombarVisibility="Collapsed"
+                                     VerticalZoombarVisibility="Collapsed"
+                                     Background="#000000"
+                                     PlotAreaBorderThickness="0"
+                                     PlotAreaBackground="Black"
+                                     Padding="0"
+                                   
+                                     >
+                    <ig:XamDataChart.Axes>
+                        <ig:CategoryDateTimeXAxis x:Name="xStockValueZoom"
+                                                      ItemsSource="{Binding FilteredData, Mode=OneWay}"
+                                                      DateTimeMemberPath="Date"
+                                                      Label="{}{Date:T}"
+                                                      Strip="Transparent"
+                                                      MajorStroke="Transparent"
+                                                      MinorStroke="Transparent"
+                                                      Stroke="#00000000"
+                                                      MinimumValue="{Binding Parent.MinimumValue, Mode=OneWay}"
+                                                      MaximumValue="{Binding Parent.MaximumValue, Mode=OneWay}">
+                            <ig:CategoryDateTimeXAxis.LabelSettings>
+                                <ig:AxisLabelSettings  Visibility="Collapsed" />
+                            </ig:CategoryDateTimeXAxis.LabelSettings>
+                        </ig:CategoryDateTimeXAxis>
+                        <ig:NumericYAxis x:Name="yStockValueZoom"
+                                             Strip="Transparent"
+                                             MajorStroke="Transparent"
+                                             MinorStroke="Transparent"
+                                             Interval="{Binding RangeIntervalY}" Stroke="#00000000">
+                            <ig:NumericYAxis.LabelSettings>
+                                <ig:AxisLabelSettings  Visibility="Collapsed" />
+                            </ig:NumericYAxis.LabelSettings>
+                        </ig:NumericYAxis>
+
+
+                    </ig:XamDataChart.Axes>
+                    <ig:XamDataChart.Series>
+                        <ig:LineSeries ItemsSource="{Binding FilteredData, Mode=OneWay}"
+                                           ValueMemberPath="Value"
+                                           MarkerType="None"
+                                           Brush="{Binding Brush}"
+                                           XAxis="{Binding ElementName=xStockValueZoom}"
+                                           YAxis="{Binding ElementName=yStockValueZoom}"
+                                           FontFamily="Arial" />
+                    </ig:XamDataChart.Series>
+                </ig:XamDataChart>
+            </ig:XamZoombar.HorizontalPreviewContent>
+        </controls:ZoombarEx>
+
+        <!--<Rectangle Fill="Red"
+                       Height="1"
+                       Margin="0"
+                       VerticalAlignment="Top"
+                       Grid.Row="2" />-->
+
+        <!-- Line Pattern -->
+        <!--<Image Height="Auto"
+                   HorizontalAlignment="Right"
+                   Width="Auto"
+                   Source="../Assets/Images/linePattern_full.png"
+                   Stretch="Fill"
+                   Grid.Row="1"
+                   Grid.RowSpan="6"
+                   IsHitTestVisible="False" d:IsLocked="True" />-->
+
+    </Grid>
+</Page>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="EdgeEnergy.CutterDashboard.Views.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Strings.About, Source={StaticResource LocalizedResources}, Mode=OneTime}" Width="360" Height="240"
+		Background="Black" ResizeMode="NoResize" >
+    <StackPanel HorizontalAlignment="Left" Margin="30" Orientation="Vertical" VerticalAlignment="Top">
+        <Image Source="..\Assets\Images\EdgeEnergyLogo.jpg" Stretch="None" HorizontalAlignment="Center" />
+        <TextBlock  HorizontalAlignment="Center" TextAlignment="Center"  TextWrapping="Wrap" Foreground="#FFFFFF"  >
+             Designed by <Hyperlink NavigateUri="http://www.OneSrc.co.uk" RequestNavigate="Hyperlink_RequestNavigate">
+                One Source
+            </Hyperlink> for Edge Energy          
+        </TextBlock>
+
+        <TextBlock  HorizontalAlignment="Center" TextAlignment="Center"  TextWrapping="Wrap" Foreground="#FFFFFF" Text="{Binding Strings.AboutVersion, Source={StaticResource LocalizedResources}, Mode=OneTime}" />
+
+
+    </StackPanel>
+</Window>

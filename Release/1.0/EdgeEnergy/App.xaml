@@ -1,0 +1,42 @@
+﻿<Application x:Class="EdgeEnergy.CutterDashboard.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:converters="clr-namespace:EdgeEnergy.CutterDashboard.Converters"
+			 xmlns:vm="clr-namespace:EdgeEnergy.CutterDashboard.ViewModels"
+			 xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:loc="clr-namespace:EdgeEnergy.CutterDashboard.Assets.LocalizedResources"
+             StartupUri="MainWindow.xaml"
+             ShutdownMode="OnExplicitShutdown"
+
+             >
+	
+	<Application.Resources>
+		<ResourceDictionary>
+            <loc:LocalizedResources x:Key="LocalizedResources" />
+			<converters:ByteToBitmapConverter x:Key="ByteToBitmapConverter" />
+			<converters:StringComparisonToBoolValueConverter x:Key="StringComparisonToBoolValueConverter" />
+			<converters:PositiveNegativeBrushValueConverter x:Key="positiveNegativeBrushValueConverter">
+				<converters:PositiveNegativeBrushValueConverter.StockPositiveChangeColor>
+					<SolidColorBrush Color="Green" />
+				</converters:PositiveNegativeBrushValueConverter.StockPositiveChangeColor>
+				<converters:PositiveNegativeBrushValueConverter.StockNegativeChangeColor>
+					<SolidColorBrush Color="Red" />
+				</converters:PositiveNegativeBrushValueConverter.StockNegativeChangeColor>
+			</converters:PositiveNegativeBrushValueConverter>
+			<converters:DataItemIsSelectedStockValueConverter x:Key="selectedStockIsCheckedValueConverter" />
+			<BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+
+			<!--<vm:StockViewModel x:Key="stockViewModel">
+			</vm:StockViewModel>-->
+
+            <!--<vm:HeatmapViewModel x:Key="heatmapViewModel" />-->
+
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="/EdgeEnergy.Dashboard;component/Assets/Global.xaml" />-->
+
+                <ResourceDictionary Source="Assets/Styles.xaml"/>
+                <!--<ResourceDictionary Source="/EdgeEnergy.Dashboard;component/IG.xamComboEditor.xaml" />-->
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

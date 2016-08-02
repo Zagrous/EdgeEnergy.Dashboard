@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>このサンプルでは、ファイナンシャル系アプリケーションに最適な Data Visualization コントロールを使用しています。業務向けアプリケーションや外部の顧客向けのアプリケーションなどに使用することができます。このデータチャートは、高速ストック チャート用に最適化された高速データチャートを使用することによって構築しています。チャートは、何億のデータ ポイントおよび大量なデータセットのリアルタイムな更新をサポートします。更に、データチャートでは主要な統計や技術的な指標、および主要な競合他者との比較などができます。また、表示オプションは、ズームバーで 1 か月、3 か月、6 か月、1 年間、5 年間、10 年間 　および Max が選択できます。比較解析では、会社の株価と主要な競合のチャート表示を実現しています。</value>
+  </data>
+  <data name="ADD" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Ask" xml:space="preserve">
+    <value>指し値</value>
+  </data>
+  <data name="Bid" xml:space="preserve">
+    <value>入札</value>
+  </data>
+  <data name="Choose_Chart_Type" xml:space="preserve">
+    <value>チャート タイプの選択：</value>
+  </data>
+  <data name="Daily_High" xml:space="preserve">
+    <value>高値</value>
+  </data>
+  <data name="Daily_Low" xml:space="preserve">
+    <value>安値</value>
+  </data>
+  <data name="EBITA" xml:space="preserve">
+    <value>EBITA</value>
+  </data>
+  <data name="EPS" xml:space="preserve">
+    <value>EPS</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="MAX" xml:space="preserve">
+    <value>最大範囲</value>
+  </data>
+  <data name="Mkt_Cap" xml:space="preserve">
+    <value>マーケット キャップ</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>始値</value>
+  </data>
+  <data name="Please_Wait" xml:space="preserve">
+    <value>少々お待ちください...</value>
+  </data>
+  <data name="Price_Over_Time" xml:space="preserve">
+    <value>価格の変動</value>
+  </data>
+  <data name="P_E" xml:space="preserve">
+    <value>P/E</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>範囲</value>
+  </data>
+  <data name="Sales_Volume" xml:space="preserve">
+    <value>売上データ</value>
+  </data>
+  <data name="Stock_Price" xml:space="preserve">
+    <value>株価</value>
+  </data>
+  <data name="Type_Ticker_Here" xml:space="preserve">
+    <value>銘柄を入力してください</value>
+  </data>
+  <data name="Vol" xml:space="preserve">
+    <value>ボリューム</value>
+  </data>
+  <data name="_10_YEARS" xml:space="preserve">
+    <value>10 年</value>
+  </data>
+  <data name="_1_MONTH" xml:space="preserve">
+    <value>1 か月</value>
+  </data>
+  <data name="_1_YEAR" xml:space="preserve">
+    <value>1 年</value>
+  </data>
+  <data name="_3_MONTHS" xml:space="preserve">
+    <value>3 か月</value>
+  </data>
+  <data name="_52_Weeks" xml:space="preserve">
+    <value>52 週</value>
+  </data>
+  <data name="_5_YEARS" xml:space="preserve">
+    <value>5 年</value>
+  </data>
+  <data name="_6_MONTHS" xml:space="preserve">
+    <value>6 か月</value>
+  </data>
+  <data name="Chart_Area" xml:space="preserve">
+    <value>エリア チャート</value>
+  </data>
+  <data name="Chart_Area_Desc" xml:space="preserve">
+    <value>ベースライン (ダウ平均株価など) に対する株価の動向を比較します。</value>
+  </data>
+  <data name="Chart_CandleStick" xml:space="preserve">
+    <value>ローソク足チャート</value>
+  </data>
+  <data name="Chart_CandleStick_Desc" xml:space="preserve">
+    <value>取引のボリュームによる株の動向を表示します。</value>
+  </data>
+  <data name="Chart_Line" xml:space="preserve">
+    <value>折れ線チャート</value>
+  </data>
+  <data name="Chart_Line_Desc" xml:space="preserve">
+    <value>時間とともに変化する価格をトラッキングします。</value>
+  </data>
+  <data name="Chart_OHLC" xml:space="preserve">
+    <value>O-H-L-C</value>
+  </data>
+  <data name="Chart_OHLC_Desc" xml:space="preserve">
+    <value>各日の始値および終値の動向を表示します。</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>変更 %</value>
+  </data>
+  <data name="Company_Summary_Info" xml:space="preserve">
+    <value>業種ノードをクリックすると子会社を表示できます</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Div_Yield" xml:space="preserve">
+    <value>配当率 (%)</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="Grid_Net_Profit_Margin" xml:space="preserve">
+    <value>純利益</value>
+  </data>
+  <data name="Grid_Price_to_Book" xml:space="preserve">
+    <value>株価純資産 (mrq)</value>
+  </data>
+  <data name="Grid_Price_to_Free_Cash_Flow" xml:space="preserve">
+    <value>株価純資産 (mrq)</value>
+  </data>
+  <data name="Heat_Map" xml:space="preserve">
+    <value>ヒート マップ</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>ブラック セクター ノードを左クリックしてドリルダウンできます。右クリックで戻ります。</value>
+  </data>
+  <data name="Market_Cap" xml:space="preserve">
+    <value>マーケット キャップ</value>
+  </data>
+  <data name="Market_Description" xml:space="preserve">
+    <value>マーケット</value>
+  </data>
+  <data name="Net_Profit_Margin" xml:space="preserve">
+    <value>純利益</value>
+  </data>
+  <data name="PE" xml:space="preserve">
+    <value>P/E</value>
+  </data>
+  <data name="Price_to_Book" xml:space="preserve">
+    <value>株価純資産 (mrq)</value>
+  </data>
+  <data name="Price_to_Free_Cash_Flow" xml:space="preserve">
+    <value>フリー キャッシュ フロー (mrq)</value>
+  </data>
+  <data name="ROE" xml:space="preserve">
+    <value>ROE %</value>
+  </data>
+  <data name="Stocks_Chart" xml:space="preserve">
+    <value>株価チャート</value>
+  </data>
+</root>
